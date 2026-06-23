@@ -34,21 +34,25 @@ jobs:
       - name: Type check
         run: yarn workspace @portfolio/web tsc --noEmit
 
-      - name: Build Next.js
-        run: yarn workspace @portfolio/web build
+      - name: Vercel Build
+        working-directory: apps/web
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
 
       - name: Deploy to Vercel (Production)
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        working-directory: apps/web
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
-        working-directory: apps/web
+        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
 
       - name: Deploy to Vercel (Preview)
         if: github.event_name == 'pull_request'
+        working-directory: apps/web
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: npx vercel deploy --token=${{ secrets.VERCEL_TOKEN }} --yes
-        working-directory: apps/web
+        run: npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --yes
