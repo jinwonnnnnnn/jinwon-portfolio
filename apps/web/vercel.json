@@ -1,0 +1,5 @@
+{
+  "installCommand": "cd ../.. && yarn install --immutable",
+  "buildCommand": "cd ../.. && yarn workspace @portfolio/ui build && yarn workspace @portfolio/web build",
+  "outputDirectory": ".next"
+}
