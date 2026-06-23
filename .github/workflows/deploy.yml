@@ -39,20 +39,16 @@ jobs:
 
       - name: Deploy to Vercel (Production)
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |
-          npx vercel deploy --prod \
-            --token=${{ secrets.VERCEL_TOKEN }} \
-            --yes \
-            -e VERCEL_ORG_ID=${{ secrets.VERCEL_ORG_ID }} \
-            -e VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
         working-directory: apps/web
 
       - name: Deploy to Vercel (Preview)
         if: github.event_name == 'pull_request'
-        run: |
-          npx vercel deploy \
-            --token=${{ secrets.VERCEL_TOKEN }} \
-            --yes \
-            -e VERCEL_ORG_ID=${{ secrets.VERCEL_ORG_ID }} \
-            -e VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npx vercel deploy --token=${{ secrets.VERCEL_TOKEN }} --yes
         working-directory: apps/web
