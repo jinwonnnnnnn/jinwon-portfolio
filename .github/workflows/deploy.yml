@@ -28,11 +28,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Type check
-        run: yarn workspace @portfolio/web tsc --noEmit
-
       - name: Build UI package
         run: yarn workspace @portfolio/ui build
+
+      - name: Type check
+        run: yarn workspace @portfolio/web tsc --noEmit
 
       - name: Build Next.js
         run: yarn workspace @portfolio/web build
