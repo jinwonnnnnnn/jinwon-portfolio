@@ -1,6 +1,6 @@
 {
-  "installCommand": "npx --yes yarn@4.12.0 install --immutable",
-  "buildCommand": "npx yarn@4.12.0 workspace @portfolio/ui build && npx yarn@4.12.0 workspace @portfolio/web build",
+  "installCommand": "node .yarn/releases/yarn-4.12.0.cjs install --immutable",
+  "buildCommand": "node .yarn/releases/yarn-4.12.0.cjs workspace @portfolio/ui build && node .yarn/releases/yarn-4.12.0.cjs workspace @portfolio/web build",
   "outputDirectory": "apps/web/.next",
   "framework": "nextjs"
 }
