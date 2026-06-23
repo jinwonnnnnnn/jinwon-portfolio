@@ -1,0 +1,58 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Enable Corepack (Yarn Berry)
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Type check
+        run: yarn workspace @portfolio/web tsc --noEmit
+
+      - name: Build UI package
+        run: yarn workspace @portfolio/ui build
+
+      - name: Build Next.js
+        run: yarn workspace @portfolio/web build
+
+      - name: Deploy to Vercel (Production)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          npx vercel deploy --prod \
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --yes \
+            -e VERCEL_ORG_ID=${{ secrets.VERCEL_ORG_ID }} \
+            -e VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}
+        working-directory: apps/web
+
+      - name: Deploy to Vercel (Preview)
+        if: github.event_name == 'pull_request'
+        run: |
+          npx vercel deploy \
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --yes \
+            -e VERCEL_ORG_ID=${{ secrets.VERCEL_ORG_ID }} \
+            -e VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}
+        working-directory: apps/web

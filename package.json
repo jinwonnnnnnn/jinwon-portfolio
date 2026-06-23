@@ -1,0 +1,9 @@
+{
+  "name": "jinwon-portfolio",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "yarn@4.12.0"
+}
