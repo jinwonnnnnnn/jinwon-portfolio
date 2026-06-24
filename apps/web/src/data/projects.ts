@@ -377,6 +377,11 @@ export const projects: Project[] = [
     duration: "2025.03 · 4일",
     teamSize: "개인",
     github: "https://github.com/jinwonnnnnnn/WeddingJS",
+    live: "https://jinwonnnnnnn.github.io/WeddingJS/",
+    images: [
+      "/images/projects/wedding-bg.png",
+      "/images/projects/wedding-photo.jpg",
+    ],
   },
   {
     title: "pulttaegi_fork",

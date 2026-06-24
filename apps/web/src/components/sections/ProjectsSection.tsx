@@ -255,6 +255,20 @@ function ProjectModal({
               )}
             </div>
             <div className="flex items-center gap-2">
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-[#52525b] hover:text-[#fafafa] transition-colors p-1"
+                  aria-label="라이브 사이트"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              )}
               {project.github && (
                 <a
                   href={project.github}
