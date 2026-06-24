@@ -372,6 +372,13 @@ function ProjectCard({
         </div>
       )}
 
+      {/* Top row: company badge (company) or meta (personal) + title + actions */}
+      {project.type === "company" && (
+        <div className="inline-flex items-center gap-1.5 text-[10px] font-mono text-[#52525b] bg-white/4 border border-white/8 rounded-md px-2 py-0.5 mb-3">
+          {project.company}
+        </div>
+      )}
+
       <div className="flex items-start justify-between gap-2 mb-1">
         <h3
           className="text-base font-bold text-[#fafafa] group-hover:text-[#a5b4fc] transition-colors duration-200"
@@ -406,7 +413,7 @@ function ProjectCard({
       <div className="text-xs text-[#818cf8] mb-1">{project.subtitle}</div>
 
       {project.type === "personal" && (project.duration || project.teamSize) && (
-        <div className="flex gap-3 mb-3 text-xs text-[#52525b] font-mono">
+        <div className="flex gap-2 mb-3 text-xs text-[#52525b] font-mono">
           {project.duration && <span>{project.duration}</span>}
           {project.teamSize && <span>· {project.teamSize}</span>}
         </div>
@@ -513,70 +520,39 @@ export default function ProjectsSection() {
           })}
         </motion.div>
 
-        {/* Company Projects */}
+        {/* Tab Content */}
         <AnimatePresence mode="wait">
           {activeTab === "company" && (
             <motion.div
               key="company"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
+              className="columns-1 md:columns-2 lg:columns-3 gap-4"
             >
-              {Object.entries(companyGroups).map(([company, list]) => (
-                <div key={company} className="mb-16">
-                  <div className="flex items-center gap-4 mb-8">
-                    <div className="flex items-center gap-2">
-                      <div className="w-1 h-5 rounded-full bg-[#818cf8]" />
-                      <span
-                        className="text-lg font-bold text-[#fafafa]"
-                        style={{ fontFamily: "var(--font-syne)" }}
-                      >
-                        {company}
-                      </span>
-                    </div>
-                    <span className="text-xs font-mono text-[#52525b]">{list.length}개 프로젝트</span>
-                    <span className="flex-1 h-px bg-white/6" />
-                  </div>
-
-                  <motion.div
-                    variants={staggerContainer}
-                    initial="hidden"
-                    animate="visible"
-                    className="columns-1 md:columns-2 lg:columns-3 gap-4"
-                  >
-                    {list.map((project, i) => (
-                      <motion.div key={i} variants={fadeInUp} className="break-inside-avoid mb-4">
-                        <ProjectCard project={project} onClick={() => setSelected(project)} />
-                      </motion.div>
-                    ))}
-                  </motion.div>
+              {companyProjects.map((project, i) => (
+                <div key={i} className="break-inside-avoid mb-4">
+                  <ProjectCard project={project} onClick={() => setSelected(project)} />
                 </div>
               ))}
             </motion.div>
           )}
 
-          {/* Personal Projects */}
           {activeTab === "personal" && (
             <motion.div
               key="personal"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
+              className="columns-1 md:columns-2 lg:columns-3 gap-4"
             >
-              <motion.div
-                variants={staggerContainer}
-                initial="hidden"
-                animate="visible"
-                className="columns-1 md:columns-2 lg:columns-3 gap-4"
-              >
-                {personalProjects.map((project, i) => (
-                  <motion.div key={i} variants={fadeInUp} className="break-inside-avoid mb-4">
-                    <ProjectCard project={project} onClick={() => setSelected(project)} />
-                  </motion.div>
-                ))}
-              </motion.div>
+              {personalProjects.map((project, i) => (
+                <div key={i} className="break-inside-avoid mb-4">
+                  <ProjectCard project={project} onClick={() => setSelected(project)} />
+                </div>
+              ))}
             </motion.div>
           )}
         </AnimatePresence>
