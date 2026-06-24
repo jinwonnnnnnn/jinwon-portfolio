@@ -6,6 +6,156 @@ import Image from "next/image";
 import { fadeInUp, staggerContainer, Badge } from "@portfolio/ui";
 import { projects } from "@/data/projects";
 
+function ImageSlider({ images, stopPropagation }: { images: string[]; stopPropagation?: boolean }) {
+  const [current, setCurrent] = useState(0);
+
+  const prev = (e: React.MouseEvent) => {
+    if (stopPropagation) e.stopPropagation();
+    setCurrent((i) => (i - 1 + images.length) % images.length);
+  };
+  const next = (e: React.MouseEvent) => {
+    if (stopPropagation) e.stopPropagation();
+    setCurrent((i) => (i + 1) % images.length);
+  };
+
+  return (
+    <div className="relative w-full overflow-hidden rounded-xl bg-[#111] select-none">
+      <div className="relative w-full h-44">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={current}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={images[current]}
+              alt={`slide ${current + 1}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={prev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:bg-black/70 transition-colors"
+              aria-label="이전"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              onClick={next}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:bg-black/70 transition-colors"
+              aria-label="다음"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5.5 2.5L10 7l-4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </>
+        )}
+      </div>
+
+      {images.length > 1 && (
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={(e) => {
+                if (stopPropagation) e.stopPropagation();
+                setCurrent(i);
+              }}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
+                i === current ? "bg-white w-3" : "bg-white/40"
+              }`}
+              aria-label={`슬라이드 ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ModalImageSlider({ images }: { images: string[] }) {
+  const [current, setCurrent] = useState(0);
+
+  return (
+    <div className="relative w-full rounded-t-2xl overflow-hidden bg-[#0a0a0a]">
+      <div className="relative w-full h-56">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={current}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={images[current]}
+              alt={`slide ${current + 1}`}
+              fill
+              className="object-cover"
+              sizes="512px"
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={() => setCurrent((i) => (i - 1 + images.length) % images.length)}
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white/80 hover:text-white hover:bg-black/80 transition-colors"
+              aria-label="이전"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M9.5 3L5 8l4.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setCurrent((i) => (i + 1) % images.length)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white/80 hover:text-white hover:bg-black/80 transition-colors"
+              aria-label="다음"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6.5 3L11 8l-4.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </>
+        )}
+
+        {images.length > 1 && (
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`h-1.5 rounded-full transition-all duration-200 ${
+                  i === current ? "bg-white w-5" : "bg-white/40 w-1.5"
+                }`}
+                aria-label={`슬라이드 ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
+        <div className="absolute top-3 right-3 z-10 text-xs font-mono text-white/50 bg-black/40 rounded-full px-2 py-0.5">
+          {current + 1} / {images.length}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function TiltCard({
   children,
   className,
@@ -63,7 +213,6 @@ export default function ProjectsSection() {
   return (
     <section id="projects" ref={ref} className="py-32 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Label */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
@@ -94,7 +243,6 @@ export default function ProjectsSection() {
           실무에서 주도적으로 설계·개발한 서비스들입니다. 카드를 클릭하면 상세 정보를 확인할 수 있습니다.
         </motion.p>
 
-        {/* Masonry grid */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -115,16 +263,9 @@ export default function ProjectsSection() {
                     : "border-white/8 bg-white/2 hover:border-white/16 hover:shadow-[0_0_24px_rgba(255,255,255,0.04)]"
                 }`}
               >
-                {/* Image */}
-                {project.image && (
-                  <div className="relative w-full h-44 rounded-xl overflow-hidden mb-5 bg-[#111]">
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} 스크린샷`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
+                {project.images && project.images.length > 0 && (
+                  <div className="mb-5">
+                    <ImageSlider images={project.images} stopPropagation />
                   </div>
                 )}
 
@@ -149,12 +290,10 @@ export default function ProjectsSection() {
                   {project.description}
                 </p>
 
-                {/* Achievement pill */}
                 <div className="text-xs text-[#818cf8]/80 font-mono bg-[#818cf8]/8 border border-[#818cf8]/15 rounded-lg px-3 py-2 mb-4 leading-relaxed">
                   {project.achievement}
                 </div>
 
-                {/* Tags */}
                 <div className="flex flex-wrap gap-1.5">
                   {project.tags.slice(0, 5).map((tag) => (
                     <Badge key={tag} label={tag} variant="default" />
@@ -186,16 +325,8 @@ export default function ProjectsSection() {
                 onClick={(e) => e.stopPropagation()}
                 className="bg-[#111111] border border-white/10 rounded-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto"
               >
-                {selected.image && (
-                  <div className="relative w-full h-52 rounded-t-2xl overflow-hidden bg-[#0a0a0a]">
-                    <Image
-                      src={selected.image}
-                      alt={`${selected.title} 스크린샷`}
-                      fill
-                      className="object-cover"
-                      sizes="512px"
-                    />
-                  </div>
+                {selected.images && selected.images.length > 0 && (
+                  <ModalImageSlider images={selected.images} />
                 )}
 
                 <div className="p-8">

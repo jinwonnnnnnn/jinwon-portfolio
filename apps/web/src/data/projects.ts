@@ -9,7 +9,7 @@ export interface Project {
   outcomes?: string[];
   tags: string[];
   company: string;
-  image?: string;
+  images?: string[];
   github?: string;
   live?: string;
   featured?: boolean;
@@ -54,7 +54,13 @@ export const projects: Project[] = [
       "Keychain",
     ],
     company: "스탠다드네트웍스",
-    image: "/images/projects/placeholder.svg",
+    images: [
+      "/images/projects/bbi-1.png",
+      "/images/projects/bbi-2.png",
+      "/images/projects/bbi-3.png",
+      "/images/projects/bbi-4.png",
+      "/images/projects/bbi-5.png",
+    ],
     featured: true,
   },
   {
@@ -94,7 +100,12 @@ export const projects: Project[] = [
       "yup",
     ],
     company: "스탠다드네트웍스",
-    image: "/images/projects/placeholder.svg",
+    images: [
+      "/images/projects/web015-1.png",
+      "/images/projects/web015-2.png",
+      "/images/projects/web015-3.png",
+      "/images/projects/web015-4.png",
+    ],
     featured: true,
   },
   {
@@ -135,7 +146,7 @@ export const projects: Project[] = [
       "DnD Kit",
     ],
     company: "스탠다드네트웍스",
-    image: "/images/projects/placeholder.svg",
+    images: ["/images/projects/customer-1.png"],
     featured: true,
   },
   {
@@ -238,5 +249,9 @@ export const projects: Project[] = [
       "EasyPay",
     ],
     company: "스탠다드네트웍스",
+    images: [
+      "/images/projects/smart-order-1.png",
+      "/images/projects/smart-order-2.png",
+    ],
   },
 ];
