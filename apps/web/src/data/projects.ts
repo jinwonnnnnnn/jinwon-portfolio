@@ -107,10 +107,10 @@ export const projects: Project[] = [
     company: "스탠다드네트웍스",
     type: "company",
     images: [
-      "/images/projects/web015-1.png",
       "/images/projects/web015-2.png",
       "/images/projects/web015-3.png",
       "/images/projects/web015-4.png",
+      "/images/projects/web015-5.png",
     ],
     featured: true,
   },
