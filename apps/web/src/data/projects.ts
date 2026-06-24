@@ -83,6 +83,7 @@ export const projects: Project[] = [
     solution: [
       "프로젝트 컨벤션 수립 및 React Query 도입을 통한 구조 표준화 및 최적화",
       "API 캐싱, Code Splitting 적용으로 번들 사이즈 및 로딩 속도 개선",
+      "Knip 도입으로 정적 분석 환경 개선 및 레거시 제거 — 미사용 파일 297개 제거, Unused exports 182→0, types 63→0 정리",
     ],
     achievement: "코드 표준화 및 중복 제거로 유지보수 공수 40% 절감",
     outcomes: [

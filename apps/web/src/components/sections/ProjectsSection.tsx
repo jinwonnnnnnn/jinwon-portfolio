@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useInView, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, useInView, AnimatePresence, useMotionValue, useMotionTemplate } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, staggerContainer, Badge } from "@portfolio/ui";
 import { projects, type Project } from "@/data/projects";
@@ -22,7 +22,6 @@ function ImageSlider({ images, stopPropagation }: { images: string[]; stopPropag
   return (
     <div
       className="relative w-full aspect-square rounded-xl overflow-hidden bg-[#0d0d0d] select-none"
-      style={{ isolation: "isolate" }}
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
@@ -153,7 +152,7 @@ function ModalImageSlider({ images }: { images: string[] }) {
   );
 }
 
-/* ── TiltCard ────────────────────────────────────────────────── */
+/* ── GlowCard (replaces TiltCard — no 3D, mouse-tracked glow) ── */
 function TiltCard({
   children,
   className,
@@ -164,41 +163,37 @@ function TiltCard({
   onClick?: () => void;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const rawX = useMotionValue(0);
-  const rawY = useMotionValue(0);
-  const rotateX = useSpring(useTransform(rawY, [-0.5, 0.5], [4, -4]), { stiffness: 300, damping: 30 });
-  const rotateY = useSpring(useTransform(rawX, [-0.5, 0.5], [-4, 4]), { stiffness: 300, damping: 30 });
-  const glowX = useTransform(rawX, [-0.5, 0.5], ["0%", "100%"]);
-  const glowY = useTransform(rawY, [-0.5, 0.5], ["0%", "100%"]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const background = useMotionTemplate`radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(129,140,248,0.10) 0%, transparent 55%)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = cardRef.current?.getBoundingClientRect();
     if (!rect) return;
-    rawX.set((e.clientX - rect.left) / rect.width - 0.5);
-    rawY.set((e.clientY - rect.top) / rect.height - 0.5);
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
   };
 
   const handleMouseLeave = () => {
-    rawX.set(0);
-    rawY.set(0);
+    mouseX.set(-999);
+    mouseY.set(-999);
   };
 
   return (
     <motion.div
       ref={cardRef}
-      style={{ rotateX, rotateY, transformPerspective: 1000 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      className={`relative rounded-2xl transition-shadow duration-300 group cursor-pointer [backface-visibility:hidden] ${className}`}
+      whileHover={{ y: -3 }}
+      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+      className={`relative rounded-2xl transition-shadow duration-300 group cursor-pointer ${className}`}
     >
       <motion.div
-        style={{
-          background: `radial-gradient(circle at ${glowX} ${glowY}, rgba(129,140,248,0.08) 0%, transparent 60%)`,
-        }}
-        className="absolute inset-0 pointer-events-none z-0 rounded-2xl"
+        style={{ background }}
+        className="absolute inset-0 pointer-events-none rounded-2xl"
       />
-      <div className="relative z-10">{children}</div>
+      <div className="relative">{children}</div>
     </motion.div>
   );
 }
@@ -502,7 +497,7 @@ export default function ProjectsSection() {
           animate={isInView ? "visible" : "hidden"}
           className="text-[#a1a1aa] mb-10"
         >
-          실무에서 주도적으로 설계·개발한 서비스들입니다. 카드를 클릭하면 상세 정보를 확인할 수 있습니다.
+          회사 실무 프로젝트와 개인·팀 프로젝트입니다. 카드를 클릭하면 상세 정보를 확인할 수 있습니다.
         </motion.p>
 
         {/* Tabs */}
