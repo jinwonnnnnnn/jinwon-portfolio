@@ -379,8 +379,9 @@ export const projects: Project[] = [
     github: "https://github.com/jinwonnnnnnn/WeddingJS",
     live: "https://jinwonnnnnnn.github.io/WeddingJS/",
     images: [
-      "/images/projects/wedding-bg.png",
-      "/images/projects/wedding-photo.jpg",
+      "/images/projects/wedding-1.png",
+      "/images/projects/wedding-2.png",
+      "/images/projects/wedding-3.png",
     ],
   },
   {
