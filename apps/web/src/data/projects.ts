@@ -9,6 +9,9 @@ export interface Project {
   outcomes?: string[];
   tags: string[];
   company: string;
+  type: "company" | "personal";
+  duration?: string;
+  teamSize?: string;
   images?: string[];
   github?: string;
   live?: string;
@@ -16,6 +19,7 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  /* ── 회사 프로젝트 ─────────────────────────────────────────── */
   {
     title: "015 삐삐 앱",
     subtitle: "메시징 서비스",
@@ -54,6 +58,7 @@ export const projects: Project[] = [
       "Keychain",
     ],
     company: "스탠다드네트웍스",
+    type: "company",
     images: [
       "/images/projects/bbi-1.png",
       "/images/projects/bbi-2.png",
@@ -100,6 +105,7 @@ export const projects: Project[] = [
       "yup",
     ],
     company: "스탠다드네트웍스",
+    type: "company",
     images: [
       "/images/projects/web015-1.png",
       "/images/projects/web015-2.png",
@@ -146,6 +152,7 @@ export const projects: Project[] = [
       "DnD Kit",
     ],
     company: "스탠다드네트웍스",
+    type: "company",
     images: ["/images/projects/customer-1.png"],
     featured: true,
   },
@@ -186,6 +193,7 @@ export const projects: Project[] = [
       "MSW",
     ],
     company: "스탠다드네트웍스",
+    type: "company",
   },
   {
     title: "자사 서비스 통합 관리자",
@@ -211,6 +219,7 @@ export const projects: Project[] = [
     ],
     tags: ["React", "Next.js", "TypeScript", "REST API"],
     company: "스탠다드네트웍스",
+    type: "company",
   },
   {
     title: "스마트오더",
@@ -249,9 +258,156 @@ export const projects: Project[] = [
       "EasyPay",
     ],
     company: "스탠다드네트웍스",
+    type: "company",
     images: [
       "/images/projects/smart-order-1.png",
       "/images/projects/smart-order-2.png",
     ],
+  },
+
+  /* ── 개인 프로젝트 (레포 생성일 최신순) ──────────────────────── */
+  {
+    title: "jinwon-portfolio",
+    subtitle: "개인 포트폴리오 사이트",
+    description:
+      "Next.js 15 App Router + Tailwind CSS 4 기반 프론트엔드 개발자 포트폴리오. Yarn Berry 4 모노레포 구조와 GitHub Actions CI/CD 파이프라인을 직접 구축했습니다.",
+    details: [
+      "Next.js 15 App Router 기반 SPA 및 Framer Motion 인터랙션 구현",
+      "apps/web + packages/ui 분리 Yarn Berry 4 모노레포 설계",
+      "tsup으로 공용 컴포넌트 라이브러리 빌드 파이프라인 구성",
+      "GitHub Actions + Vercel 자동 배포 파이프라인 구축",
+    ],
+    achievement: "Vercel 환경에서 Yarn Berry 4 번들 바이너리 직접 실행으로 CI/CD 파이프라인 완성",
+    outcomes: [
+      "모노레포 구조 설계 및 패키지 간 의존성 관리 경험",
+      "CI(타입 체크·빌드) → CD(Vercel 배포) 완전 자동화",
+    ],
+    tags: [
+      "Next.js 15",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Framer Motion",
+      "Yarn Berry 4",
+      "tsup",
+      "GitHub Actions",
+      "Vercel",
+    ],
+    company: "개인",
+    type: "personal",
+    duration: "2026.06 ~ 진행 중",
+    teamSize: "개인",
+    github: "https://github.com/jinwonnnnnnn/jinwon-portfolio",
+    featured: true,
+  },
+  {
+    title: "GroupMemo",
+    subtitle: "AI 자동 그룹화 메모 앱",
+    description:
+      "AI가 메모를 자동으로 분류·그룹화해주는 React Native(Expo) 앱. LLM API를 활용한 에이전트 아키텍처로 설계하여 Web · iOS · Android를 모두 지원합니다.",
+    details: [
+      "메모 CRUD 및 그룹 필터링, 색상 태그 기능 구현",
+      "MemoAgent → GroupingAgent → AIAgent 3계층 에이전트 패턴 설계",
+      "AsyncStorage + Zustand persist로 로컬 영구 저장 구현",
+      "OpenAI-compatible API 추상화로 LLM 공급자 교체 가능 구조",
+    ],
+    achievement: "에이전트 아키텍처 도입으로 AI 기능 완전 모듈화 및 교체 가능 구조 실현",
+    outcomes: [
+      "React Native(Expo) 기반 크로스플랫폼 앱 처음부터 설계",
+      "실제 AI API 연동 및 LLM 추상화 레이어 경험",
+    ],
+    tags: [
+      "Expo SDK 54",
+      "React Native",
+      "TypeScript",
+      "Zustand",
+      "TanStack Query",
+      "NativeWind",
+      "OpenAI API",
+      "Expo Router",
+      "Vitest",
+    ],
+    company: "개인",
+    type: "personal",
+    duration: "2026.06",
+    teamSize: "개인",
+    github: "https://github.com/jinwonnnnnnn/GroupMemo",
+  },
+  {
+    title: "korean-search-utils",
+    subtitle: "한글 검색 npm 패키지",
+    description:
+      "React 프로젝트에서 한글 자모 분리·초성 검색·fuzzy 매칭을 지원하는 유틸리티 함수와 커스텀 훅 npm 패키지. ESM + CJS 듀얼 빌드를 지원합니다.",
+    details: [
+      "한글 자모 분리(disassembleHangul) 및 초성 fuzzy 검색(isMatch) 구현",
+      "하이라이팅용 매칭 구간 반환(getMatchSegments) 유틸 제공",
+      "React 없이도 사용 가능한 필터+정렬 유틸(filterAndSort) 제공",
+      "tsup으로 ESM + CJS 듀얼 빌드 및 npm 배포",
+    ],
+    achievement: "npm 패키지 배포 — 설치 즉시 초성 검색·하이라이팅을 사용할 수 있는 라이브러리 완성",
+    outcomes: [
+      "한글 처리 알고리즘 직접 구현 및 패키지 설계 경험",
+      "tsup 듀얼 빌드(ESM/CJS) 및 npm 배포 파이프라인 구축",
+    ],
+    tags: ["TypeScript", "tsup", "npm", "React", "ESM", "CJS"],
+    company: "개인",
+    type: "personal",
+    duration: "2025.05",
+    teamSize: "개인",
+    github: "https://github.com/jinwonnnnnnn/korean-search-utils",
+  },
+  {
+    title: "WeddingJS",
+    subtitle: "모바일 웨딩 청첩장",
+    description:
+      "Framer Motion과 Lenis를 활용한 감성적인 모바일 웨딩 청첩장 프로젝트. 오프닝 애니메이션, 부드러운 스크롤, 갤러리, 배경음악, 카운트다운 기능을 포함합니다.",
+    details: [
+      "framer-motion 기반 감성적인 오프닝 페이드 인/아웃 애니메이션 구현",
+      "lenis 라이브러리로 자연스러운 모바일 스크롤 인터랙션 구현",
+      "갤러리, 배경음악 재생, D-day 카운트다운 기능 개발",
+      "모바일 특화 반응형 UI 설계 및 공유하기 기능 구현",
+    ],
+    achievement: "4일 개발로 Framer Motion + Lenis 조합의 완성도 높은 모바일 청첩장 구현",
+    outcomes: [
+      "복합 애니메이션 연출과 타이밍 제어 심화 경험",
+      "모바일 스크롤 라이브러리(Lenis) 통합 및 성능 최적화",
+    ],
+    tags: ["React 18", "TypeScript", "Vite", "Framer Motion", "Lenis"],
+    company: "개인",
+    type: "personal",
+    duration: "2025.03 · 4일",
+    teamSize: "개인",
+    github: "https://github.com/jinwonnnnnnn/WeddingJS",
+  },
+  {
+    title: "pulttaegi_fork",
+    subtitle: "웰빙음식 맛집 검색 서비스",
+    description:
+      "공공데이터를 활용한 웰빙음식 맛집 검색 서비스. React + Redux 기반의 SPA로, 키워드 및 카테고리 필터링과 지도 연동을 지원합니다.",
+    details: [
+      "공공데이터 API 연동 및 맛집 검색·필터링 기능 구현",
+      "Redux를 활용한 전역 상태 관리 구조 설계",
+      "Swiper 기반 슬라이드 UI 및 지도 연동 기능 개발",
+      "Tailwind CSS + DaisyUI 조합의 반응형 UI 구성",
+    ],
+    achievement: "공공데이터 API 활용 및 Redux 상태 관리 구조 직접 설계·구현",
+    outcomes: [
+      "공공 API 연동 및 데이터 가공 경험",
+      "React + Redux 기반 상태 관리 아키텍처 이해",
+    ],
+    tags: [
+      "React 18",
+      "TypeScript",
+      "Vite",
+      "Redux",
+      "Tailwind CSS",
+      "DaisyUI",
+      "Styled-Components",
+      "Swiper",
+    ],
+    company: "개인",
+    type: "personal",
+    duration: "2023.02",
+    teamSize: "개인",
+    github: "https://github.com/jinwonnnnnnn/pulttaegi_fork",
   },
 ];
