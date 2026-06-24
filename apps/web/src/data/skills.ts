@@ -10,7 +10,7 @@ export const skills: SkillGroup[] = [
   },
   {
     category: "Framework",
-    items: ["React", "Next.js", "React Native", "Vite"],
+    items: ["React", "Next.js", "React Native"],
   },
   {
     category: "State / Data",
@@ -26,6 +26,6 @@ export const skills: SkillGroup[] = [
   },
   {
     category: "Tooling",
-    items: ["Git", "React Hook Form", "Zod", "Framer Motion", "Storybook", "MSW"],
+    items: ["Git", "Vite", "React Hook Form", "Zod", "Framer Motion", "Storybook", "MSW"],
   },
 ];
