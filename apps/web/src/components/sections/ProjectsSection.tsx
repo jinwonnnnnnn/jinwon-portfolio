@@ -190,7 +190,7 @@ function TiltCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      className={`relative rounded-2xl transition-shadow duration-300 group cursor-pointer ${className}`}
+      className={`relative rounded-2xl transition-shadow duration-300 group cursor-pointer [backface-visibility:hidden] ${className}`}
     >
       <motion.div
         style={{
@@ -376,8 +376,8 @@ function ProjectCard({
       onClick={onClick}
       className={`w-full border p-6 ${
         project.featured
-          ? "border-[#818cf8]/20 bg-[#818cf8]/5 hover:border-[#818cf8]/40 hover:shadow-[0_0_32px_rgba(129,140,248,0.1)]"
-          : "border-white/8 bg-white/2 hover:border-white/16 hover:shadow-[0_0_24px_rgba(255,255,255,0.04)]"
+          ? "border-[#818cf8]/20 bg-[#0f0f1b] hover:border-[#818cf8]/40 hover:shadow-[0_0_32px_rgba(129,140,248,0.1)]"
+          : "border-white/8 bg-[#111111] hover:border-white/16 hover:shadow-[0_0_24px_rgba(255,255,255,0.04)]"
       }`}
     >
       {project.images && project.images.length > 0 && (
