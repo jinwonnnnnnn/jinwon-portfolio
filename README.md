@@ -1,10 +1,37 @@
 # 김진원 포트폴리오
 
-**Frontend Developer** · React / Next.js / React Native · 5년차
+**Frontend Developer** · React / Next.js / React Native · FE 3년차
 
 사용자 경험 개선과 유지보수성을 고민하는 개발자 김진원의 포트폴리오입니다.
 
 > 이 프로젝트는 사이트 개발, 콘텐츠 구성, 발표자료 생성까지 전 과정을 **Claude Code 멀티 에이전트 시스템**으로 구축했습니다.
+
+---
+
+## 기술 스택
+
+### 사이트
+
+![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=flat-square&logo=framer&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+
+### 발표자료 자동 생성
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![pptxgenjs](https://img.shields.io/badge/pptxgenjs-D04A00?style=flat-square&logo=microsoftpowerpoint&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white)
+
+### 모노레포
+
+![Yarn Berry](https://img.shields.io/badge/Yarn_Berry_4-2C8EBB?style=flat-square&logo=yarn&logoColor=white)
+![tsup](https://img.shields.io/badge/tsup-FBBF24?style=flat-square&logoColor=black)
+
+### AI
+
+![Claude Code](https://img.shields.io/badge/Claude_Code-D97706?style=flat-square&logo=anthropic&logoColor=white)
 
 ---
 
