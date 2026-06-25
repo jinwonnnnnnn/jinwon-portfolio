@@ -4,7 +4,7 @@ export const profile = {
   roles: ["Frontend Developer", "React Engineer", "Next.js Developer", "UI Builder"],
   bio: "사용자 경험 개선과 유지보수성을 고민하는 개발자",
   description:
-    "퍼블리셔에서 시작하여 프론트엔드 개발자로 성장한 5년차 개발자입니다. 단순한 구현을 넘어 구조 설계와 유지보수성을 함께 고민하며, 팀과 함께 성장하는 것을 중요하게 생각합니다.",
+    "퍼블리셔에서 시작하여 프론트엔드 개발자로 성장한 3년차 개발자입니다. 단순한 구현을 넘어 구조 설계와 유지보수성을 함께 고민하며, 팀과 함께 성장하는 것을 중요하게 생각합니다.",
   values: [
     {
       title: "Growth Mindset",

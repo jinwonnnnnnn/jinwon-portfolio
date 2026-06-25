@@ -273,7 +273,7 @@ export default function HeroSection() {
           <span className="text-[#fafafa]">
             단순 구현을 넘어 구조 설계와 유지보수성
           </span>
-          을 함께 고민하는 5년차 개발자입니다.
+          을 함께 고민하는 3년차 개발자입니다.
         </motion.p>
 
         {/* CTAs */}
