@@ -267,19 +267,19 @@ export const projects: Project[] = [
   /* ── 개인 프로젝트 (레포 생성일 최신순) ──────────────────────── */
   {
     title: "jinwon-portfolio",
-    subtitle: "개인 포트폴리오 사이트",
+    subtitle: "Claude Code 멀티 에이전트로 구축한 포트폴리오 사이트",
     description:
-      "Next.js 15 App Router + Tailwind CSS 4 기반 프론트엔드 개발자 포트폴리오. Yarn Berry 4 모노레포 구조와 GitHub Actions CI/CD 파이프라인을 직접 구축했습니다.",
+      "코드를 직접 작성하지 않고 Claude Code 하네스 엔지니어링으로 구축한 포트폴리오. 에이전트별 역할을 분리해 사이트 개발·발표자료 자동 생성까지 전 과정을 AI 오케스트레이션으로 완성.",
     details: [
-      "Next.js 15 App Router 기반 SPA 및 Framer Motion 인터랙션 구현",
-      "apps/web + packages/ui 분리 Yarn Berry 4 모노레포 설계",
-      "tsup으로 공용 컴포넌트 라이브러리 빌드 파이프라인 구성",
-      "GitHub Actions + Vercel 자동 배포 파이프라인 구축",
+      "portfolio-orchestrator가 project-architect → design-researcher → ui-builder → section-developer → qa-reviewer 순서로 에이전트를 조율",
+      "ppt-creator 스킬이 data/*.ts를 읽어 pptxgenjs로 PPTX, Playwright로 PDF 자동 생성",
+      "에이전트별 역할 분리와 _workspace/ 파일 기반 데이터 전달 구조 설계",
+      "Next.js 15 + Yarn Berry 4 모노레포, Vercel 배포까지 전 과정 AI 주도",
     ],
-    achievement: "Vercel 환경에서 Yarn Berry 4 번들 바이너리 직접 실행으로 CI/CD 파이프라인 완성",
+    achievement: "코드 한 줄 직접 수정 없이 멀티 에이전트 하네스 엔지니어링으로 포트폴리오 사이트 + 발표자료 자동 생성 파이프라인 완성",
     outcomes: [
-      "모노레포 구조 설계 및 패키지 간 의존성 관리 경험",
-      "CI(타입 체크·빌드) → CD(Vercel 배포) 완전 자동화",
+      "에이전트별 역할 정의·오케스트레이션 설계 경험 (6개 에이전트 + 2개 스킬)",
+      "AI 생성 콘텐츠의 사실 검증·수정 프로세스 — 허위 수치 직접 교정",
     ],
     tags: [
       "Next.js 15",
