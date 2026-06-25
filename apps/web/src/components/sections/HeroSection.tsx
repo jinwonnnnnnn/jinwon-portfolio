@@ -20,7 +20,12 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
     return () => clearInterval(timer);
   }, [to]);
 
-  return <>{count}{suffix}</>;
+  return (
+    <>
+      {count}
+      {suffix}
+    </>
+  );
 }
 
 function DownloadDropdown() {
@@ -30,7 +35,8 @@ function DownloadDropdown() {
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node))
+        setOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
@@ -42,13 +48,33 @@ function DownloadDropdown() {
         onClick={() => setOpen((v) => !v)}
         className="group flex items-center gap-1.5 text-sm text-[#a1a1aa] hover:text-[#818cf8] transition-colors duration-200"
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover:translate-y-0.5">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="transition-transform duration-200 group-hover:translate-y-0.5"
+        >
           <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
           <polyline points="7 10 12 15 17 10" />
           <line x1="12" y1="15" x2="12" y2="3" />
         </svg>
         다운로드
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
+        <svg
+          width="10"
+          height="10"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        >
           <polyline points="6 9 12 15 18 9" />
         </svg>
       </button>
@@ -66,7 +92,16 @@ function DownloadDropdown() {
             onClick={() => setOpen(false)}
             className="flex items-center gap-2.5 px-4 py-3 text-sm text-[#fafafa] hover:bg-white/5 transition-colors"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f87171" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#f87171"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14 2 14 8 20 8" />
               <line x1="16" y1="13" x2="8" y2="13" />
@@ -83,7 +118,16 @@ function DownloadDropdown() {
             onClick={() => setOpen(false)}
             className="flex items-center gap-2.5 px-4 py-3 text-sm text-[#a1a1aa] hover:bg-white/5 transition-colors"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#818cf8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#818cf8"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <rect x="2" y="3" width="20" height="14" rx="2" />
               <line x1="8" y1="21" x2="16" y2="21" />
               <line x1="12" y1="17" x2="12" y2="21" />
@@ -109,12 +153,17 @@ export default function HeroSection() {
   const blob2X = useTransform(mouseX, [0, 1], ["5%", "-5%"]);
   const blob2Y = useTransform(mouseY, [0, 1], ["5%", "-5%"]);
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    mouseX.set(e.clientX / window.innerWidth);
-    mouseY.set(e.clientY / window.innerHeight);
-  }, [mouseX, mouseY]);
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      mouseX.set(e.clientX / window.innerWidth);
+      mouseY.set(e.clientY / window.innerHeight);
+    },
+    [mouseX, mouseY],
+  );
 
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
@@ -125,11 +174,17 @@ export default function HeroSection() {
     const current = roles[roleIndex];
     let timeout: ReturnType<typeof setTimeout>;
     if (!isDeleting && displayed.length < current.length) {
-      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 80);
+      timeout = setTimeout(
+        () => setDisplayed(current.slice(0, displayed.length + 1)),
+        80,
+      );
     } else if (!isDeleting && displayed.length === current.length) {
       timeout = setTimeout(() => setIsDeleting(true), 2200);
     } else if (isDeleting && displayed.length > 0) {
-      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length - 1)), 40);
+      timeout = setTimeout(
+        () => setDisplayed(current.slice(0, displayed.length - 1)),
+        40,
+      );
     } else if (isDeleting && displayed.length === 0) {
       setIsDeleting(false);
       setRoleIndex((i) => (i + 1) % roles.length);
@@ -141,18 +196,28 @@ export default function HeroSection() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+    >
       {/* Background blobs */}
       <div className="absolute inset-0 pointer-events-none">
-        <motion.div style={{ x: blob1X, y: blob1Y }} className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-[#818cf8]/5 blur-[120px]" />
-        <motion.div style={{ x: blob2X, y: blob2Y }} className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-[#a5b4fc]/3 blur-[100px]" />
+        <motion.div
+          style={{ x: blob1X, y: blob1Y }}
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-[#818cf8]/5 blur-[120px]"
+        />
+        <motion.div
+          style={{ x: blob2X, y: blob2Y }}
+          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-[#a5b4fc]/3 blur-[100px]"
+        />
       </div>
 
       {/* Grid overlay */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
-          backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+          backgroundImage:
+            "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
@@ -190,7 +255,8 @@ export default function HeroSection() {
           className="flex items-center gap-2 mb-8"
         >
           <span className="text-xl sm:text-2xl font-medium text-[#818cf8] font-mono">
-            {displayed}<span className="animate-pulse">|</span>
+            {displayed}
+            <span className="animate-pulse">|</span>
           </span>
         </motion.div>
 
@@ -204,8 +270,10 @@ export default function HeroSection() {
           {profile.bio}
           <br />
           퍼블리셔에서 시작하여 프론트엔드 개발자로 성장하며,{" "}
-          <span className="text-[#fafafa]">단순 구현을 넘어 구조 설계와 유지보수성</span>을
-          함께 고민하는 5년차 개발자입니다.
+          <span className="text-[#fafafa]">
+            단순 구현을 넘어 구조 설계와 유지보수성
+          </span>
+          을 함께 고민하는 5년차 개발자입니다.
         </motion.p>
 
         {/* CTAs */}
@@ -220,7 +288,9 @@ export default function HeroSection() {
             className="group flex items-center gap-2 text-sm font-medium text-[#fafafa] hover:text-[#818cf8] transition-colors duration-200"
           >
             프로젝트 보기
-            <span className="inline-block translate-x-0 group-hover:translate-x-1 transition-transform duration-200">→</span>
+            <span className="inline-block translate-x-0 group-hover:translate-x-1 transition-transform duration-200">
+              →
+            </span>
           </button>
 
           <span className="w-px h-4 bg-white/15" />
@@ -261,13 +331,16 @@ export default function HeroSection() {
           >
             {[
               { to: 5, suffix: "+", label: "Years Exp." },
-              { to: 6, suffix: "+", label: "Projects" },
+              { to: 13, suffix: "+", label: "Projects" },
               { to: 3, suffix: "", label: "Companies" },
             ].map((stat, i) => (
               <div key={stat.label} className="flex items-center gap-8">
                 {i > 0 && <span className="w-px h-8 bg-white/8" />}
                 <div>
-                  <div className="text-2xl font-bold text-[#fafafa]" style={{ fontFamily: "var(--font-syne)" }}>
+                  <div
+                    className="text-2xl font-bold text-[#fafafa]"
+                    style={{ fontFamily: "var(--font-syne)" }}
+                  >
                     <CountUp to={stat.to} suffix={stat.suffix} />
                   </div>
                   <div className="text-xs text-[#52525b] font-mono tracking-widest uppercase mt-0.5">
@@ -293,11 +366,32 @@ export default function HeroSection() {
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
             className="flex flex-col items-center gap-1 text-[#52525b]"
           >
-            <span className="text-[10px] font-mono tracking-[0.2em] uppercase">scroll</span>
+            <span className="text-[10px] font-mono tracking-[0.2em] uppercase">
+              scroll
+            </span>
             <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
-              <rect x="5.5" y="0.5" width="5" height="9" rx="2.5" stroke="currentColor" strokeWidth="1"/>
-              <circle cx="8" cy="4" r="1.5" fill="currentColor" className="opacity-60" />
-              <path d="M8 14l-3 3m3-3l3 3" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
+              <rect
+                x="5.5"
+                y="0.5"
+                width="5"
+                height="9"
+                rx="2.5"
+                stroke="currentColor"
+                strokeWidth="1"
+              />
+              <circle
+                cx="8"
+                cy="4"
+                r="1.5"
+                fill="currentColor"
+                className="opacity-60"
+              />
+              <path
+                d="M8 14l-3 3m3-3l3 3"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinecap="round"
+              />
             </svg>
           </motion.div>
         </motion.div>
