@@ -330,7 +330,7 @@ export default function HeroSection() {
             className="flex items-center gap-8"
           >
             {[
-              { to: 5, suffix: "+", label: "Years Exp." },
+              { to: 3, suffix: "+", label: "Years Exp." },
               { to: 13, suffix: "+", label: "Projects" },
               { to: 3, suffix: "", label: "Companies" },
             ].map((stat, i) => (
