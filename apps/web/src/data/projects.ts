@@ -79,7 +79,7 @@ export const projects: Project[] = [
       "UI/UX 리뉴얼 및 사내 디자인 시스템 개선 참여",
       "Claude.md 기반 프로젝트 컨벤션 및 기술 문서 관리",
     ],
-    problem: "파일 구조 및 컴포넌트 작성 방식 상이로 인한 유지보수 비용 증가",
+    problem: "코딩 컨벤션 부재로 개발자마다 파일 구조·컴포넌트 작성 방식이 달라 유지보수 비용 증가",
     solution: [
       "프로젝트 컨벤션 수립 및 React Query 도입을 통한 구조 표준화 및 최적화",
       "API 캐싱, Code Splitting 적용으로 번들 사이즈 및 로딩 속도 개선",
