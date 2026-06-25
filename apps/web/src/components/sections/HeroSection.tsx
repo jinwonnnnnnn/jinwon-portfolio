@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { profile } from "@/data/profile";
 
@@ -21,6 +21,79 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
   }, [to]);
 
   return <>{count}{suffix}</>;
+}
+
+function DownloadDropdown() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="group flex items-center gap-1.5 text-sm text-[#a1a1aa] hover:text-[#818cf8] transition-colors duration-200"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover:translate-y-0.5">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        다운로드
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+
+      {open && (
+        <motion.div
+          initial={{ opacity: 0, y: -6, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.15 }}
+          className="absolute bottom-full mb-2 left-0 w-44 bg-[#1c1c27] border border-white/10 rounded-xl overflow-hidden shadow-2xl z-50"
+        >
+          <a
+            href="/portfolio.pdf"
+            download="김진원_포트폴리오.pdf"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2.5 px-4 py-3 text-sm text-[#fafafa] hover:bg-white/5 transition-colors"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f87171" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg>
+            <span>PDF 다운로드</span>
+            <span className="ml-auto text-[10px] text-[#52525b]">권장</span>
+          </a>
+          <div className="h-px bg-white/5 mx-3" />
+          <a
+            href="/portfolio.pptx"
+            download="김진원_포트폴리오.pptx"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2.5 px-4 py-3 text-sm text-[#a1a1aa] hover:bg-white/5 transition-colors"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#818cf8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+            PPT 다운로드
+          </a>
+        </motion.div>
+      )}
+    </div>
+  );
 }
 
 export default function HeroSection() {
@@ -175,18 +248,7 @@ export default function HeroSection() {
 
           <span className="w-px h-4 bg-white/15" />
 
-          <a
-            href="/portfolio.pptx"
-            download="김진원_포트폴리오.pptx"
-            className="group flex items-center gap-1.5 text-sm text-[#a1a1aa] hover:text-[#818cf8] transition-colors duration-200"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover:translate-y-0.5">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            PPT 다운로드
-          </a>
+          <DownloadDropdown />
         </motion.div>
 
         {/* Stats — 인라인 가로 배열 */}
