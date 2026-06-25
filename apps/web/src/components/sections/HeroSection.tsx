@@ -172,6 +172,21 @@ export default function HeroSection() {
             </svg>
             GitHub
           </a>
+
+          <span className="w-px h-4 bg-white/15" />
+
+          <a
+            href="/portfolio.pptx"
+            download="김진원_포트폴리오.pptx"
+            className="group flex items-center gap-1.5 text-sm text-[#a1a1aa] hover:text-[#818cf8] transition-colors duration-200"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover:translate-y-0.5">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            PPT 다운로드
+          </a>
         </motion.div>
 
         {/* Stats — 인라인 가로 배열 */}
