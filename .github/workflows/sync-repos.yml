@@ -1,0 +1,77 @@
+name: Sync GitHub Repos
+
+on:
+  schedule:
+    # 매일 오전 9시 (KST) = UTC 0시
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (projects.ts를 실제로 수정하지 않음)"
+        required: false
+        default: "false"
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Sync GitHub Repos
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # GITHUB_TOKEN은 같은 repo push 시 다른 워크플로우를 트리거하지 않으므로
+          # Vercel 배포는 이 워크플로우에서 직접 실행합니다.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run sync script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/sync-github-repos.mjs
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git add apps/web/src/data/projects.ts apps/web/public/images/projects/ 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "변경 사항 없음."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "변경 사항 감지됨."
+          fi
+
+      - name: Commit changes
+        if: steps.changes.outputs.changed == 'true' && inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: auto-sync new GitHub repos"
+          git push
+
+      - name: Deploy to Vercel
+        if: steps.changes.outputs.changed == 'true' && inputs.dry_run != 'true'
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
+          echo "Vercel 배포 완료"
+
+      - name: Summary
+        run: |
+          if [ "${{ steps.changes.outputs.changed }}" == "true" ]; then
+            echo "### ✓ 신규 레포지토리가 포트폴리오에 추가되었습니다" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### — 신규 레포지토리 없음 (변경 사항 없음)" >> $GITHUB_STEP_SUMMARY
+          fi
