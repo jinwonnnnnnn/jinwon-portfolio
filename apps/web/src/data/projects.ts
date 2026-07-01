@@ -267,6 +267,48 @@ export const projects: Project[] = [
 
   /* ── 개인 프로젝트 (레포 생성일 최신순) ──────────────────────── */
   {
+    title: "핀테크입문",
+    subtitle: "AI 기반 재테크 학습 풀스택 앱",
+    description:
+      "초보 투자자를 위한 AI 재테크 플랫폼. 실시간 주식·코인 시세, Claude AI 투자 제안, 금융 용어 Q&A를 제공하는 React + NestJS 풀스택 앱.",
+    details: [
+      "React 18 + Vite(FE) / NestJS + Prisma + PostgreSQL(BE) 풀스택 설계 및 구현",
+      "Finnhub API 실시간 주식·코인 시세 + Recharts Area Chart 시각화",
+      "Claude API 연동 — 시장 뉴스·관심사 기반 AI 투자 제안 및 금융 용어 Q&A",
+      "GitHub Issues에 'claude' 라벨 부착 시 Claude Code 자동 구현 → PR → CI/QA Loop Engineering",
+    ],
+    achievement:
+      "GitHub Issues → Claude 자동 구현 → PR → CI 검증의 Loop Engineering으로 개발 속도·품질 동시 확보",
+    outcomes: [
+      "NestJS + Prisma 풀스택 아키텍처 및 JWT + Google/Kakao OAuth 인증 설계 경험",
+      "Claude API 직접 연동 및 AI 기능 모듈화, Railway + Vercel 멀티 플랫폼 배포",
+    ],
+    tags: [
+      "React 18",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS v4",
+      "Framer Motion",
+      "Recharts",
+      "TanStack Query",
+      "Zustand",
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
+      "Claude API",
+      "Finnhub API",
+      "Railway",
+      "Vercel",
+    ],
+    company: "개인",
+    type: "personal",
+    duration: "2026.06 ~ 진행 중",
+    teamSize: "개인",
+    github: "https://github.com/jinwonnnnnnn/finance-app",
+    live: "https://finance-app-jw.vercel.app",
+    inProgress: true,
+  },
+  {
     title: "jinwon-portfolio",
     subtitle: "Claude Code 멀티 에이전트로 구축한 포트폴리오 사이트",
     description:
@@ -383,48 +425,6 @@ export const projects: Project[] = [
       "/images/projects/wedding-2.png",
       "/images/projects/wedding-3.png",
     ],
-  },
-  {
-    title: "핀테크입문",
-    subtitle: "AI 기반 재테크 학습 풀스택 앱",
-    description:
-      "초보 투자자를 위한 AI 재테크 플랫폼. 실시간 주식·코인 시세, Claude AI 투자 제안, 금융 용어 Q&A를 제공하는 React + NestJS 풀스택 앱.",
-    details: [
-      "React 18 + Vite(FE) / NestJS + Prisma + PostgreSQL(BE) 풀스택 설계 및 구현",
-      "Finnhub API 실시간 주식·코인 시세 + Recharts Area Chart 시각화",
-      "Claude API 연동 — 시장 뉴스·관심사 기반 AI 투자 제안 및 금융 용어 Q&A",
-      "GitHub Issues에 'claude' 라벨 부착 시 Claude Code 자동 구현 → PR → CI/QA Loop Engineering",
-    ],
-    achievement:
-      "GitHub Issues → Claude 자동 구현 → PR → CI 검증의 Loop Engineering으로 개발 속도·품질 동시 확보",
-    outcomes: [
-      "NestJS + Prisma 풀스택 아키텍처 및 JWT + Google/Kakao OAuth 인증 설계 경험",
-      "Claude API 직접 연동 및 AI 기능 모듈화, Railway + Vercel 멀티 플랫폼 배포",
-    ],
-    tags: [
-      "React 18",
-      "TypeScript",
-      "Vite",
-      "Tailwind CSS v4",
-      "Framer Motion",
-      "Recharts",
-      "TanStack Query",
-      "Zustand",
-      "NestJS",
-      "Prisma",
-      "PostgreSQL",
-      "Claude API",
-      "Finnhub API",
-      "Railway",
-      "Vercel",
-    ],
-    company: "개인",
-    type: "personal",
-    duration: "2026.06 ~ 진행 중",
-    teamSize: "개인",
-    github: "https://github.com/jinwonnnnnnn/finance-app",
-    live: "https://finance-app-jw.vercel.app",
-    inProgress: true,
   },
   {
     title: "풀때기",
