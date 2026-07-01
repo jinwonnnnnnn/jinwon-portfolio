@@ -237,7 +237,15 @@ function ProjectModal({
         <div className="p-8">
           <div className="flex items-start justify-between mb-6">
             <div>
-              <div className="text-xs text-[#52525b] font-mono mb-1">{project.company}</div>
+              <div className="flex items-center gap-2 mb-1">
+                <div className="text-xs text-[#52525b] font-mono">{project.company}</div>
+                {project.inProgress && (
+                  <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#34d399] bg-[#34d399]/10 border border-[#34d399]/20 rounded-full px-2 py-0.5">
+                    <span className="w-1 h-1 rounded-full bg-[#34d399] animate-pulse" />
+                    진행 중
+                  </span>
+                )}
+              </div>
               <h3 className="text-2xl font-bold text-[#fafafa]" style={{ fontFamily: "var(--font-syne)" }}>
                 {project.title}
               </h3>
@@ -396,6 +404,12 @@ function ProjectCard({
           {project.title}
         </h3>
         <div className="flex items-center gap-2 shrink-0">
+          {project.inProgress && (
+            <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#34d399]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#34d399] animate-pulse" />
+              진행 중
+            </span>
+          )}
           {project.featured && (
             <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#818cf8]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#818cf8] animate-pulse" />

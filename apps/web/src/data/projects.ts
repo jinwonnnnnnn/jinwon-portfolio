@@ -16,6 +16,7 @@ export interface Project {
   github?: string;
   live?: string;
   featured?: boolean;
+  inProgress?: boolean;
 }
 
 export const projects: Project[] = [
@@ -419,10 +420,11 @@ export const projects: Project[] = [
     ],
     company: "개인",
     type: "personal",
-    duration: "2026.06",
+    duration: "2026.06 ~ 진행 중",
     teamSize: "개인",
     github: "https://github.com/jinwonnnnnnn/finance-app",
     live: "https://finance-app-jw.vercel.app",
+    inProgress: true,
   },
   {
     title: "풀때기",
