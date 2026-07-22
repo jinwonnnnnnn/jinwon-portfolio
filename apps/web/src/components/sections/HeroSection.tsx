@@ -331,7 +331,7 @@ export default function HeroSection() {
           >
             {[
               { to: 3, suffix: "+", label: "Years Exp." },
-              { to: 14, suffix: "+", label: "Projects" },
+              { to: 15, suffix: "+", label: "Projects" },
               { to: 3, suffix: "", label: "Companies" },
             ].map((stat, i) => (
               <div key={stat.label} className="flex items-center gap-8">

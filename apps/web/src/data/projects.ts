@@ -267,6 +267,48 @@ export const projects: Project[] = [
 
   /* ── 개인 프로젝트 (레포 생성일 최신순) ──────────────────────── */
   {
+    title: "YouTube Shorts 자동화",
+    subtitle: "AI 유튜브 쇼츠 자동 생성·업로드 파이프라인",
+    description:
+      "Claude AI가 스크립트를 생성하고, Google TTS로 음성을 합성하고, FFmpeg으로 세로 영상을 조립해 YouTube에 자동 업로드하는 풀스택 자동화 파이프라인. NestJS cron 스케줄러로 매일 카테고리별 최적 시간에 무인 실행됩니다.",
+    details: [
+      "Claude API로 카테고리별 스크립트·제목·설명·태그 자동 생성",
+      "Google Cloud TTS(ko-KR-Neural2-A)로 한국어 음성 합성 → FFmpeg으로 세로 영상(1080×1920) 조립",
+      "YouTube Data API v3 OAuth 연동 + #Shorts 태그 자동 업로드",
+      "NestJS @nestjs/schedule cron으로 5개 카테고리 시청자 최적 시간대 자동 실행",
+      "Claude 에이전트 기반 주간 채널 분석 → 트렌딩 파악·콘텐츠 전략 권고",
+      "React 18 + Vite 대시보드 — 업로드 이력, 스케줄 현황, 통계 시각화",
+    ],
+    achievement:
+      "Claude → Google TTS → FFmpeg → YouTube 전 파이프라인 자동화로 일 1개 쇼츠 무인 운영 체계 구축",
+    outcomes: [
+      "NestJS + Prisma 7 + PostgreSQL 풀스택 설계 및 Docker Compose 배포 경험",
+      "Claude API 에이전트 패턴(tool_use) 및 YouTube OAuth 전체 인증 플로우 구현",
+    ],
+    tags: [
+      "NestJS",
+      "TypeScript",
+      "Prisma 7",
+      "PostgreSQL",
+      "React 18",
+      "Vite",
+      "Tailwind CSS v4",
+      "TanStack Query",
+      "Zustand",
+      "Claude API",
+      "Google Cloud TTS",
+      "FFmpeg",
+      "YouTube Data API v3",
+      "Docker Compose",
+    ],
+    company: "개인",
+    type: "personal",
+    duration: "2026.07 ~ 진행 중",
+    teamSize: "개인",
+    github: "https://github.com/jinwonnnnnnn/youtube_shorts",
+    inProgress: true,
+  },
+  {
     title: "핀테크입문",
     subtitle: "AI 기반 재테크 학습 풀스택 앱",
     description:
