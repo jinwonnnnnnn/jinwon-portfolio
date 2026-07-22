@@ -3,8 +3,10 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { profile } from "@/data/profile";
+import { projects } from "@/data/projects";
 
 const roles = profile.roles;
+const projectCount = projects.length;
 
 function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -331,7 +333,7 @@ export default function HeroSection() {
           >
             {[
               { to: 3, suffix: "+", label: "Years Exp." },
-              { to: 13, suffix: "+", label: "Projects" },
+              { to: projectCount, suffix: "+", label: "Projects" },
               { to: 3, suffix: "", label: "Companies" },
             ].map((stat, i) => (
               <div key={stat.label} className="flex items-center gap-8">
