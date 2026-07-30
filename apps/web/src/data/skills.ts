@@ -28,4 +28,8 @@ export const skills: SkillGroup[] = [
     category: "Tooling",
     items: ["Git", "Vite", "React Hook Form", "Zod", "Framer Motion", "Storybook", "MSW"],
   },
+  {
+    category: "Infra / DevOps",
+    items: ["GitHub Actions", "Jenkins", "Vercel", "Railway", "Docker", "Docker Compose", "PM2", "Nginx"],
+  },
 ];
