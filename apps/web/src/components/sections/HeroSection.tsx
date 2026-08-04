@@ -389,7 +389,7 @@ export default function HeroSection() {
                 className="opacity-60"
               />
               <path
-                d="M8 14l-3 3m3-3l3 3"
+                d="M5 14l3 3l3 -3"
                 stroke="currentColor"
                 strokeWidth="1"
                 strokeLinecap="round"
